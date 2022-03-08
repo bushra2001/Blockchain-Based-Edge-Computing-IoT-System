@@ -30,3 +30,17 @@ sudo apt install docker-compose -y
 ```
 
 ### Installing EdgeX Foundry :
+
+The microservices making up EdgeX Foundry are controlled by a docker-compose file in YAML format. It specifies how each microservice should run, its ports, volumes and dependencies.
+
+```
+mkdir geneva
+cd geneva
+wget https://raw.githubusercontent.com/jonas-werner/EdgeX_Tutorial/master/docker-compose_files/docker-compose_step1.yml
+cp docker-compose_step1.yml docker-compose.yml
+sudo docker-compose pull
+sudo docker image ls
+```
+
+![image](https://user-images.githubusercontent.com/61081924/157315348-01585808-5f48-479b-9b14-95e5c9590452.png)
+
