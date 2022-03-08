@@ -12,3 +12,21 @@ The blockchain based edge computing architecture consist of three layers given a
 - For layer 1, EdgeX Foundary , an open source IoT edge computing platform is used.
 - For layer 2, Microservices & Apache Kafka is used.
 - For layer 3, Hyperledger Blockchain network is used.
+
+## Setting up EdgeX :
+### Installing Docker and docker-compose :
+
+```
+sudo apt update
+sudo apt upgrade -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' |sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt remove docker docker-engine docker.io
+sudo apt install docker-ce -y
+sudo usermod -aG docker ${USER}
+sudo apt install docker-compose -y
+```
+
+### Installing EdgeX Foundry :
