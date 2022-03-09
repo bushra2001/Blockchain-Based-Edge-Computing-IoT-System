@@ -47,7 +47,7 @@ volumes:
   log-data:
   consul-config:
   consul-data:
-
+  portainer_data:
 services:
   consul:
     image: edgexfoundry/docker-edgex-consul:1.2.0
@@ -64,7 +64,15 @@ services:
     environment: 
       - EDGEX_DB=redis
       - EDGEX_SECURE=false
-
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "0.0.0.0:9000:9000"  
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:z
+      - portainer_data:/data
   redis:
     image: redis:5.0.8-alpine
     ports:
