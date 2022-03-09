@@ -44,3 +44,39 @@ sudo docker image ls
 
 ![image](https://user-images.githubusercontent.com/61081924/157315348-01585808-5f48-479b-9b14-95e5c9590452.png)
 
+### Adding additional graphical user interfaces:
+- **Portainer**
+1. Open the docker-compose.yml file. Under the volumes section at the beginning of the file, add an entry for portainer as per the below:
+```
+volumes:
+db-data:
+log-data:
+consul-config:
+consul-data:
+> portainer_data:
+```
+2. Under the “services” section, add the following entry for Portainer:
+```
+portainer:
+image: portainer/portainer
+ports:
+    - "0.0.0.0:9000:9000"
+container_name: portainer
+command: -H unix:///var/run/docker.sock
+volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:z
+    - portainer_data:/data
+```
+***Note: Be careful to match the indentation with the other services entries. If in doubt,
+compare to entries above or below to make sure the indentation matches.***
+
+3. Save and exit the editor.
+4. Start (or restart) EdgeX Foundry
+```
+docker-compose up -d 
+```
+5. The new container image will be downloaded and started
+6. Portainer can now be accessed in a browser at: http://<edgex ip>:9000
+  ![image](https://user-images.githubusercontent.com/61081924/157474628-fd345585-d07e-4a5f-ab66-fd15091a182d.png)
+
+  
