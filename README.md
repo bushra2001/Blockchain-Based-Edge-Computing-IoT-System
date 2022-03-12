@@ -196,3 +196,28 @@ undry: A hands-on tutorial
 }
 ```
 ![image](https://user-images.githubusercontent.com/61081924/158034013-a40e6666-fcf1-400b-b43c-8b1fa6d2a89f.png)
+
+4. Send the data:
+In Postman use the following settings to send a temperature value:
+```
+Method: POST
+URI: http://<edgex ip>:49986/api/v1/resource/Temp_and_Humidity_sensor_cluster_01/temperature
+Payload settings:
+Set Body to “raw” and “text”
+Payload data:
+23​ (any integer value will do)
+
+![image](https://user-images.githubusercontent.com/61081924/158034135-11c7d0da-c1b5-47b6-a1d9-a51c4952b87f.png)
+```
+5. View the data:
+
+Use Postman to view the data stored in the EdgeX Foundry MOngo DB as follows
+In Postman use the following settings to view the temperature value:
+```
+Method: GET
+URI: http://<edgex ip>:48080/api/v1/reading
+```
+The return data should be similar to the following:
+    
+![image](https://user-images.githubusercontent.com/61081924/158034257-f6ffed6e-5d72-423d-b1a9-ad785e943884.png)
+
