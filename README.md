@@ -36,8 +36,8 @@ The microservices making up EdgeX Foundry are controlled by a docker-compose fil
 ```
 mkdir geneva
 cd geneva
-wget https://raw.githubusercontent.com/jonas-werner/EdgeX_Tutorial/master/docker-compose_files/docker-compose_step1.yml
-cp docker-compose_step1.yml docker-compose.yml
+wget https://github.com/edgexfoundry/developer-scripts/blob/master/releases/geneva/compose-files/docker-compose-geneva-mongo.yml
+cp docker-compose-geneva-mongo.yml docker-compose.yml
 sudo docker-compose pull
 sudo docker image ls
 ```
@@ -79,4 +79,56 @@ docker-compose up -d
 6. Portainer can now be accessed in a browser at: http://<edgex ip>:9000
   ![image](https://user-images.githubusercontent.com/61081924/157474628-fd345585-d07e-4a5f-ab66-fd15091a182d.png)
 
-  
+    
+### Creating a device :
+    
+1. Create value descriptors:
+    
+Open Postman and use the following values:
+```
+Method: POST
+URL:http://<edgex ip>:48080/api/v1/valuedescriptor
+Payload settings:Set Body to “raw” and “JSON”
+Payload data:
+{
+"name": "humidity",
+"description": "Ambient humidity in percent",
+"min": "0",
+"max": "100",
+"type": "Int64",
+"uomLabel": "humidity",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"environment",
+"humidity"
+]
+}
+```
+Tip: ***Use the very excellent feature “Beautify” on the “Body” tab in Postman to fix any
+indentation issues with the JSON payload.***
+Watch for the return code of “***200 OK*** ” and the ID of the newly created value descriptor.
+There is no need to make note of the ID.
+
+2. Update the body and issue the command again for temperature:
+```
+Method: POST
+URI: http://<edgex ip>:48080/api/v1/valuedescriptor
+Payload settings: Set Body to “raw” and “JSON”
+Payload data:
+{
+"name": "temperature",
+"description": "Ambient temperature in Celsius",
+"min": "-50",
+"max": "100",
+"type": "Int64",
+"uomLabel": "temperature",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"environment",
+"temperature"
+]
+}
+```
+    
