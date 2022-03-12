@@ -151,3 +151,48 @@ This part is a bit tricky:
 ● In the KEY field, enter “file” as key
 ```
 ![image](https://user-images.githubusercontent.com/61081924/158033762-2d095fd3-4272-4c6c-8b70-f8f0d1d82540.png)
+
+3. Create the device:
+    
+Now EdgeX is finally ready to receive the device creation command in Postman as follows:
+Two items are particularly important in this JSON body:
+● The device service “edgex-device-rest” is used since this is a REST device.
+● The profile name “SensorCluster” must match the name in the device profile yaml
+file uploaded in the previous step.
+Feel free to change values for description, location, labels, etc. if desired.
+However, the name (Temp_and_Humidity_sensor_cluster_01) will be referenced
+several times later and it’s recommended to keep it at the default for now.
+In Postman use the following settings:
+```
+Method: POST
+URI: http://<edgex ip>:48081/api/v1/device
+Payload settings: Set Body to “raw” and “JSON”
+Payload data:
+{
+"name": "Temp_and_Humidity_sensor_cluster_01",
+"description": "Raspberry Pi sensor cluster",
+"adminState": "unlocked",
+"operatingState": "enabled",
+"protocols": {
+"example": {
+"host": "dummy",
+"port": "1234",
+"unitID": "1"
+undry: A hands-on tutorial
+}
+},
+"labels": [
+"Humidity sensor",
+"Temperature sensor",
+"DHT11"
+],
+"location": "Tokyo",
+"service": {
+"name": "edgex-device-rest"
+},
+"profile": {
+"name": "SensorCluster"
+}
+}
+```
+![image](https://user-images.githubusercontent.com/61081924/158034013-a40e6666-fcf1-400b-b43c-8b1fa6d2a89f.png)
