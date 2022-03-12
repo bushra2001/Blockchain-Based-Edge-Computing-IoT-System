@@ -91,7 +91,7 @@ URL:http://<edgex ip>:48080/api/v1/valuedescriptor
 Payload settings:Set Body to “raw” and “JSON”
 Payload data:
 {
-"name": "humidity",
+"name": "humid",
 "description": "Ambient humidity in percent",
 "min": "0",
 "max": "100",
@@ -119,7 +119,7 @@ URI: http://<edgex ip>:48080/api/v1/valuedescriptor
 Payload settings: Set Body to “raw” and “JSON”
 Payload data:
 {
-"name": "temperature",
+"name": "temp",
 "description": "Ambient temperature in Celsius",
 "min": "-50",
 "max": "100",
@@ -135,3 +135,19 @@ Payload data:
 ```
 ![image](https://user-images.githubusercontent.com/61081924/158033641-7077ce2b-8c5d-4c88-995f-7de5af9a0d8f.png)
     
+2. Upload the device profile:
+    
+Get a copy of the device profile from here: https://github.com/bushra2001/Blockchain-Based-Edge-Computing-IoT-System/blob/main/geneva/sensorClusterDeviceProfile.yaml
+
+In Postman use the following settings:
+```
+Method: POST
+URI: http://<edgex ip>:48081/api/v1/deviceprofile/uploadfile
+Payload settings:
+This part is a bit tricky:
+● Set Body to “form-data”
+● Hover over KEY and select “File”
+● Select the yaml file: sensorClusterDeviceProfile.yaml
+● In the KEY field, enter “file” as key
+```
+![image](https://user-images.githubusercontent.com/61081924/158033762-2d095fd3-4272-4c6c-8b70-f8f0d1d82540.png)
