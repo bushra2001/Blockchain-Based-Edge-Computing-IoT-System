@@ -109,7 +109,9 @@ Tip: ***Use the very excellent feature “Beautify” on the “Body” tab in P
 indentation issues with the JSON payload.***
 Watch for the return code of “***200 OK*** ” and the ID of the newly created value descriptor.
 There is no need to make note of the ID.
+![image](https://user-images.githubusercontent.com/61081924/158033624-5eed66e3-17e6-4f13-92ce-f56f620b4136.png)
 
+    
 2. Update the body and issue the command again for temperature:
 ```
 Method: POST
@@ -131,4 +133,5 @@ Payload data:
 ]
 }
 ```
+![image](https://user-images.githubusercontent.com/61081924/158033641-7077ce2b-8c5d-4c88-995f-7de5af9a0d8f.png)
     
