@@ -62,8 +62,8 @@ services:
   consul:
     image: edgexfoundry/docker-edgex-consul:1.2.0
     ports:
-      - "0.0.0.0:8400:8400"
-      - "0.0.0.0:8500:8500"
+      - "127.0.0.1:8400:8400"
+      - "127.0.0.1:8500:8500"
     container_name: edgex-core-consul
     hostname: edgex-core-consul
     networks:
@@ -82,15 +82,7 @@ services:
       - EDGEX_SECURE=true
     depends_on:
       - security-secrets-setup
-  ui:
-    container_name: edgex-ui-go
-    hostname: edgex-ui-go
-    image: nexus3.edgexfoundry.org:10004/docker-edgex-ui-go:master
-    networks:
-      -  edgex-network
-    ports:
-      - "0.0.0.0:4000:4000/tcp"
-    read_only: true
+
   vault:
     image: vault:1.3.1
     container_name: edgex-vault
@@ -98,7 +90,7 @@ services:
     networks:
       - edgex-network
     ports:
-      - "0.0.0.0:8200:8200"
+      - "127.0.0.1:8200:8200"
     cap_add:
       - "IPC_LOCK"
     tmpfs:
@@ -157,7 +149,7 @@ services:
     networks:
       - edgex-network
     ports:
-        - "0.0.0.0:5432:5432"
+        - "127.0.0.1:5432:5432"
     environment:
         - 'POSTGRES_DB=kong'
         - 'POSTGRES_USER=kong'
@@ -198,9 +190,9 @@ services:
       - edgex-network
     ports:
         - "8000:8000"
-        - "0.0.0.0:8001:8001"
+        - "127.0.0.1:8001:8001"
         - "8443:8443"
-        - "0.0.0.0:8444:8444"
+        - "127.0.0.1:8444:8444"
     tty: true
     environment:
         - 'KONG_DATABASE=postgres'
@@ -255,7 +247,7 @@ services:
   mongo:
     image: edgexfoundry/docker-edgex-mongo:1.2.0
     ports:
-      - "0.0.0.0:27017:27017"
+      - "127.0.0.1:27017:27017"
     container_name: edgex-mongo
     hostname: edgex-mongo
     entrypoint: >
@@ -283,7 +275,7 @@ services:
 #  logging:
 #    image: edgexfoundry/docker-support-logging-go:1.2.1
 #    ports:
-#      - "0.0.0.0:48061:48061"
+#      - "127.0.0.1:48061:48061"
 #    container_name: edgex-support-logging
 #    hostname: edgex-support-logging
 #    networks:
@@ -305,7 +297,7 @@ services:
   system:
     image: edgexfoundry/docker-sys-mgmt-agent-go:1.2.1
     ports:
-      - "0.0.0.0:48090:48090"
+      - "127.0.0.1:48090:48090"
     container_name: edgex-sys-mgmt-agent
     hostname: edgex-sys-mgmt-agent
     networks:
@@ -329,7 +321,7 @@ services:
   notifications:
     image: edgexfoundry/docker-support-notifications-go:1.2.1
     ports:
-      - "0.0.0.0:48060:48060"
+      - "127.0.0.1:48060:48060"
     container_name: edgex-support-notifications
     hostname: edgex-support-notifications
     networks:
@@ -350,7 +342,7 @@ services:
   metadata:
     image: edgexfoundry/docker-core-metadata-go:1.2.1
     ports:
-      - "0.0.0.0:48081:48081"
+      - "127.0.0.1:48081:48081"
     container_name: edgex-core-metadata
     hostname: edgex-core-metadata
     networks:
@@ -374,8 +366,8 @@ services:
   data:
     image: edgexfoundry/docker-core-data-go:1.2.1
     ports:
-      - "0.0.0.0:48080:48080"
-      - "0.0.0.0:5563:5563"
+      - "127.0.0.1:48080:48080"
+      - "127.0.0.1:5563:5563"
     container_name: edgex-core-data
     hostname: edgex-core-data
     networks:
@@ -397,7 +389,7 @@ services:
   command:
     image: edgexfoundry/docker-core-command-go:1.2.1
     ports:
-      - "0.0.0.0:48082:48082"
+      - "127.0.0.1:48082:48082"
     container_name: edgex-core-command
     hostname: edgex-core-command
     networks:
@@ -419,7 +411,7 @@ services:
   scheduler:
     image: edgexfoundry/docker-support-scheduler-go:1.2.1
     ports:
-      - "0.0.0.0:48085:48085"
+      - "127.0.0.1:48085:48085"
     container_name: edgex-support-scheduler
     hostname: edgex-support-scheduler
     networks:
@@ -442,7 +434,7 @@ services:
   app-service-rules:
     image: edgexfoundry/docker-app-service-configurable:1.2.0
     ports:
-      - "0.0.0.0:48100:48100"
+      - "127.0.0.1:48100:48100"
     container_name: edgex-app-service-configurable-rules
     hostname: edgex-app-service-configurable-rules
     networks:
@@ -464,8 +456,8 @@ services:
   rulesengine:
     image: emqx/kuiper:0.4.2-alpine
     ports:
-      - "0.0.0.0:48075:48075"
-      - "0.0.0.0:20498:20498"
+      - "127.0.0.1:48075:48075"
+      - "127.0.0.1:20498:20498"
     container_name: edgex-kuiper
     hostname: edgex-kuiper
     networks:
@@ -488,7 +480,7 @@ services:
   # rulesengine:
   #   image: edgexfoundry/docker-support-rulesengine:1.2.1
   #   ports:
-  #     - "0.0.0.0:48075:48075"
+  #     - "127.0.0.1:48075:48075"
   #   container_name: edgex-support-rulesengine
   #   hostname: edgex-support-rulesengine
   #   networks:
@@ -503,7 +495,7 @@ services:
   device-virtual:
     image: edgexfoundry/docker-device-virtual-go:1.2.2
     ports:
-    - "0.0.0.0:49990:49990"
+    - "127.0.0.1:49990:49990"
     container_name: edgex-device-virtual
     hostname: edgex-device-virtual
     networks:
@@ -520,7 +512,7 @@ services:
   device-rest:
     image: edgexfoundry/docker-device-rest-go:1.1.1
     ports:
-      - "0.0.0.0:49986:49986"
+      - "127.0.0.1:49986:49986"
     container_name: edgex-device-rest
     hostname: edgex-device-rest
     networks:
@@ -536,7 +528,7 @@ services:
 #  device-random:
 #    image: edgexfoundry/docker-device-random-go:1.2.1
 #    ports:
-#      - "0.0.0.0:49988:49988"
+#      - "127.0.0.1:49988:49988"
 #    container_name: edgex-device-random
 #    networks:
 #      - edgex-network
@@ -550,7 +542,7 @@ services:
 #  device-mqtt:
 #    image: edgexfoundry/docker-device-mqtt-go:1.2.1
 #    ports:
-#      - "0.0.0.0:49982:49982"
+#      - "127.0.0.1:49982:49982"
 #    container_name: edgex-device-mqtt
 #    hostname: edgex-device-mqtt
 #    networks:
@@ -565,7 +557,7 @@ services:
 #  device-modbus:
 #    image: edgexfoundry/docker-device-modbus-go:1.2.1
 #    ports:
-#      - "0.0.0.0:49991:49991"
+#      - "127.0.0.1:49991:49991"
 #    container_name: edgex-device-modbus
 #    hostname: edgex-device-modbus
 #    networks:
@@ -580,7 +572,7 @@ services:
 #  device-snmp:
 #    image: edgexfoundry/docker-device-snmp-go:1.2.1
 #    ports:
-#      - "0.0.0.0:49993:49993"
+#      - "127.0.0.1:49993:49993"
 #    container_name: edgex-device-snmp
 #    hostname: edgex-device-snmp
 #    networks:
