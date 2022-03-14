@@ -15,4 +15,4 @@ The blockchain based edge computing architecture consist of three layers given a
 
 ## Guide Through:
 - To set up layer 1 follow : [EdgeX Foundary](https://github.com/bushra2001/Blockchain-Based-Edge-Computing-IoT-System/blob/main/layer1.md)
-- To set up layer 2 follow : [4 Microservices along with Apache Kafka](https://github.com/bushra2001/Blockchain-Based-Edge-Computing-IoT-System/blob/main/layer2.md)
+- To set up layer 2 follow : [Microservices, and Apache Kafka](https://github.com/bushra2001/Blockchain-Based-Edge-Computing-IoT-System/blob/main/layer2.md)
