@@ -1,5 +1,5 @@
-## Setting up EdgeX :
-### Installing Docker and docker-compose :
+# Setting up EdgeX :
+## Installing Docker and docker-compose :
 
 ```
 sudo apt update
@@ -14,7 +14,7 @@ sudo usermod -aG docker ${USER}
 sudo apt install docker-compose -y
 ```
 
-### Installing EdgeX Foundry :
+## Installing EdgeX Foundry :
 
 The microservices making up EdgeX Foundry are controlled by a docker-compose file in YAML format. It specifies how each microservice should run, its ports, volumes and dependencies.
 
@@ -29,7 +29,7 @@ sudo docker image ls
 
 ![image](https://user-images.githubusercontent.com/61081924/157315348-01585808-5f48-479b-9b14-95e5c9590452.png)
 
-### Adding additional graphical user interfaces:
+## Adding additional graphical user interfaces:
 - **Portainer**
 1. Open the docker-compose.yml file. Under the volumes section at the beginning of the file, add an entry for portainer as per the below:
 ```
@@ -65,7 +65,7 @@ docker-compose up -d
   ![image](https://user-images.githubusercontent.com/61081924/157474628-fd345585-d07e-4a5f-ab66-fd15091a182d.png)
 
     
-### Creating a device :
+## Creating a device :
     
 1. Create value descriptors:
     
